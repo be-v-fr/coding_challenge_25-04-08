@@ -1,0 +1,7 @@
+{
+  "devDependencies": {
+    "tsify": "^5.0.4",
+    "typescript": "^5.8.3",
+    "vinyl-source-stream": "^2.0.0"
+  }
+}

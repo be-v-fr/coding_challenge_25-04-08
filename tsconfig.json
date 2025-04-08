@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "target": "ES6",             // oder ES2015+
+    "module": "ES6",             // WICHTIG: erzeugt ESM statt CommonJS
+    "moduleResolution": "node",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "strict": true,
+    "esModuleInterop": true
+  }
+}
