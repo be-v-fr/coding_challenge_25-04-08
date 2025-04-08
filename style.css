@@ -1,0 +1,157 @@
+:root {
+    --transition-short: 75ms ease;
+    /* colors */
+    --white: #fff;
+    --darkgrey: #222;
+    --subtleblue: #146ec2;
+    --babyblue: #7dc0ff;
+    --grey: #aaa;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.f-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.f-column {
+    display: flex;
+    flex-direction: column;
+}
+
+html {
+    font-family: sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100dvh;
+    background: var(--darkgrey);
+    color: var(--white);
+}
+
+button, a {
+    border: none;
+    outline: none;
+    background: none;
+    text-decoration: none;
+    color: var(--white);
+    cursor: pointer;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.circular-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    padding: 10px;
+    background: var(--subtleblue);
+    transition: var(--transition-short);
+}
+
+.circular-btn:hover {
+    background: var(--babyblue);
+    transition: var(--transition-short);
+}
+
+.circular-btn .arrow {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-image: url('assets/icons/arrow-right.svg');
+    background-size: 100%;
+    background-position: center;
+}
+
+.rotate-180 {
+    transform: rotate(180deg);
+}
+
+#content {
+    width: 100%;
+    height: 100%;
+    background: var(--darkgrey);
+    color: var(--white);
+}
+
+.loader {
+    display: block;
+    width: 48px;
+    height: 48px;
+    border: 7px solid var(--subtleblue);
+    border-radius: 50%;
+    border-top-color: var(--babyblue);
+    animation: spin 1.2s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.slideshow-container {
+    max-width: 90%;
+    gap: 16px;
+}
+
+.slideshow-main {
+    display: grid;
+    grid-template-columns: 10vw auto 10vw;
+    gap: 12px;
+}
+
+.slideshow-main #photo {
+    object-fit: cover;
+    max-width: 100%;
+    height: 60dvh;
+    box-shadow: 2px 3px 2px 1px #0003;
+}
+
+.slideshow-main section.info {
+    display: flex;
+    justify-content: space-between;
+    gap: 48px;
+}
+
+.slideshow-container #carouselDots {
+    gap: 1px;
+}
+
+.carousel-dot-container {
+    display: block;
+    width: 21px;
+    height: 21px;
+    border-radius: 50%;
+    padding: 3px;
+    cursor: pointer;
+}
+
+.carousel-dot {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: var(--grey);
+    transition: var(--transition-short);
+}
+
+.carousel-dot-container:hover .carousel-dot {
+    background: var(--babyblue);
+    transition: var(--transition-short);
+}
+
+.carousel-dot.highlight {
+    background: var(--subtleblue);
+}

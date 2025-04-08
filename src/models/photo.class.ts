@@ -6,6 +6,7 @@ export class Photo {
     url: string;
     download_url: string;
 
+    
     constructor(obj: any) {
         this.id = parseInt(obj.id, 10) ?? -1;
         this.author = obj.author ?? '';
