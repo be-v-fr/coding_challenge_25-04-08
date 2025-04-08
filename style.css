@@ -152,6 +152,6 @@ a:hover {
     transition: var(--transition-short);
 }
 
-.carousel-dot.highlight {
+.carousel-dot.highlight, .carousel-dot-container:active .carousel-dot {
     background: var(--subtleblue);
 }
