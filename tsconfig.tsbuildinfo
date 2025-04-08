@@ -1,1 +1,1 @@
-{"root":["./src/index.ts","./src/interfaces/config.interface.ts","./src/models/photo.class.ts"],"version":"5.8.3"}
+{"root":["./src/index.ts","./src/interfaces/config.interface.ts","./src/models/photo.class.ts","./src/templates/slideshow.ts"],"version":"5.8.3"}

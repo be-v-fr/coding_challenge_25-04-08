@@ -1,5 +1,6 @@
 import { Config } from "./interfaces/config.interface";
 import { Photo } from "./models/photo.class";
+import { getSlideshowTemplate, getCarouselDotTemplate } from "./templates/slideshow";
 
 const CONFIG: Config = {
     apiUrl: 'https://picsum.photos/v2/list?limit=10&page=1'
@@ -57,7 +58,10 @@ function renderCarouselDots() {
     const dotsEl: HTMLElement | null = document.getElementById('carouselDots');
     if (dotsEl) {
         dotsEl.innerHTML = '';
-        photos?.forEach((p: Photo) => dotsEl.innerHTML += getCarouselDotTemplate(p.id));
+        photos?.forEach((p: Photo) => {
+            const isCurrentPhoto: boolean = (p.id === currPhotoId);
+            dotsEl.innerHTML += getCarouselDotTemplate(p.id, isCurrentPhoto);
+        });
     }
 }
 
@@ -78,41 +82,3 @@ function slidePhoto(dir: 'next' | 'previous') {
     showPhoto(photoId);
 }
 (window as any).slidePhoto = slidePhoto;
-
-
-function getSlideshowTemplate(photo: Photo): string {
-    return /* html */`
-    <div class="slideshow-container f-center f-column">
-        <div class="slideshow-main">
-            <div class="f-center">
-                <button class="circular-btn" onclick="slidePhoto('previous')">
-                    <i class="arrow rotate-180"></i>
-                </button>
-            </div>
-            <img id="photo" src="${photo.download_url}" alt="Photo by ${photo.author}" />
-            <div class="f-center">
-                <button class="circular-btn" onclick="slidePhoto('next')">
-                    <i class="arrow"></i>
-                </button>
-            </div>
-            <div class="grid-placeholder"></div>
-            <section class="info">
-                <span>${photo.author}</span>
-                <a target="blank" href="${photo.url}">Source</a>
-            </section>
-            <div class="grid-placeholder"></div>
-        </div>
-        <div id="carouselDots" class="f-center"></div>
-    </div>
-    `;
-}
-
-
-function getCarouselDotTemplate(dotPhotoId: number): string {
-    const isCurrent: boolean = (dotPhotoId === currPhotoId);
-    return /* html */`
-    <button class="carousel-dot-container f-center" onclick="showPhoto(${dotPhotoId})">
-        <span class="carousel-dot ${isCurrent ? 'highlight' : ''}"></span>
-    </button>
-    `;
-}
