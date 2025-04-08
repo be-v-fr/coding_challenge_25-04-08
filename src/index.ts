@@ -9,20 +9,26 @@ let photos: Photo[] | undefined = undefined;
 
 window.addEventListener('DOMContentLoaded', () => init());
 
-function init(): void {
-    downloadPhotos();
+async function init(): Promise<void> {
+    await downloadPhotos();
 }
 
-function downloadPhotos(): void {
-    fetch(CONFIG.apiUrl)
-        .then((downloadResp: Response) => onPhotosDownload(downloadResp))
-        .catch((e: Error) => console.error(e));
+async function downloadPhotos(): Promise<void> {
+    try {
+        const downloadResp: Response = await fetch(CONFIG.apiUrl);
+        await onPhotosDownload(downloadResp);
+    } catch(err) {
+        console.error(err);
+    }
 }
 
-function onPhotosDownload(downloadResp: Response) {
-    downloadResp.json()
-        .then((photosData: any[]) => instantiatePhotos(photosData))
-        .catch((e: Error) => console.error(e));
+async function onPhotosDownload(downloadResp: Response): Promise<void> {
+    try {
+        const photosData: any[] = await downloadResp.json();
+        instantiatePhotos(photosData);
+    } catch(err) {
+        console.error(err);
+    }
 }
 
 function instantiatePhotos(photosData: any[]) {
